@@ -1,13 +1,37 @@
 import { makeStyles } from "@material-ui/core";
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import AliceCarousel from "react-alice-carousel";
 import { Link } from "react-router-dom";
+import { globalState } from "../Context";
+import 'react-alice-carousel/lib/alice-carousel.css';
 
+const Crousal = () => {
 
-const Carousel = () => {
+  // let [query, setQuery] = useContext(globalState);
+  const [recipe ,setRecipe] = useState([]); 
 
+    const APP_ID = "4daa0b40";
+    const APP_KEY = "71da2f2c75bc3e6fb58a849c78afe20c";
   
+    const url = `https://api.edamam.com/search?q=chinese&app_id=${APP_ID}&app_key=${APP_KEY}`;
+
+    let getData = async () => {
+      
+        let result = await axios.get(url);
+        let dt = await result.data;
+        
+        console.log(dt.hits)
+        // console.log(dt.hits); // different types
+        setRecipe(dt.hits);
+      
+    };
+    console.log(recipe);
+
+  useEffect(() => {
+   getData();
+    
+  }, []);
 
   const useStyles = makeStyles((theme) => ({
     carousel: {
@@ -25,50 +49,45 @@ const Carousel = () => {
     },
   }));
 
+  
   const classes = useStyles();
 
-  const items = trending.map((food) => {
-    let profit = coin?.price_change_percentage_24h >= 0;
+  const handleDragStart = (e) => e.preventDefault();
 
+  const items = recipe.map((food) => {
+   
     return (
-      <Link className={classes.carouselItem} to={`/coins/${coin.id}`}>
-        <img
-          src={`./asset/${idx}.jpg`}
-          alt={coin.name}
-          height="80"
+      <div>
+         <img
+        onDragStart={handleDragStart} 
+        role="presentation"
+          src={food?.recipe?.image}
+          alt={`img`}
+          height="150"
+          width="150"
           style={{ marginBottom: 10 }}
         />
-        <span>
-          {coin?.symbol}
-          &nbsp;
-          <span
-            style={{
-              color: profit > 0 ? "rgb(14, 203, 129)" : "red",
-              fontWeight: 500,
-            }}
-          >
-            {profit && "+"}
-            {coin?.price_change_percentage_24h?.toFixed(2)}%
-          </span>
-        </span>
-        <span style={{ fontSize: 22, fontWeight: 500 }}>
-          {symbol} {numberWithCommas(coin?.current_price.toFixed(2))}
-        </span>
-      </Link>
+        <small>{food?.recipe?.label.split(" ",3) }</small>
+      </div>
+
     );
   });
 
   const responsive = {
     0: {
+      items: 2,
+    },
+    300: {
       items: 4,
     },
     512: {
-      items: 4,
+      items: 8,
     },
+   
   };
 
   return (
-    <div className={classes.carousel}>
+ 
       <AliceCarousel
         mouseTracking
         infinite
@@ -80,8 +99,10 @@ const Carousel = () => {
         items={items}
         autoPlay
       />
-    </div>
+ 
+
+    
   );
 };
 
-export default Carousel;
+export default Crousal;
