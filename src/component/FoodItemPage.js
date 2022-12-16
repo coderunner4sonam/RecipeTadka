@@ -17,7 +17,7 @@ const FoodItemPage = () => {
 
   const useStyles = makeStyles((theme) => ({
     container: {
-      display: "flex",
+      display: "flex",  
       [theme.breakpoints.down("md")]: {
         flexDirection: "column",
         alignItems: "center",
@@ -37,32 +37,33 @@ const FoodItemPage = () => {
 
   return (
     <>
-      <div className={classes.container}>
-        <div className={classes.sidebar}>
+      <div style={{display:"flex",justifyContent:"space-around"}}>
+        <div style={{ borderRight:"1px solid white",}}>
+          <br/>
           <img
             src={data[0].recipe.image}
             alt="foodimage"
             height="200"
-            style={{ marginBottom: 20, height: "40%", width: "90%" }}
+            style={{ marginBottom: 20, height: "40%", width: "90%" ,padding:"10px",border:"1px solid white",marginRight:"80px"}}
           />
-          <Typography variant="h6" className={classes.heading}>
-            {data[0].recipe.ingredientLines}
-          </Typography>
-        </div>
+         
+         </div>
+         <div>
         {data[0].recipe.ingredientLines.map((element) => {
         return (
-          <div
-            style={{
-              height: "80",
-              width: "50%",
-              display: "flex",
-              flexDirection: "column",
-            }}
-          >
-            {element}
-          </div>
+          // <div
+          //   style={{
+          //     height: "80",
+          //     width: "50%",
+          //     // display: "flex",
+          //     // flexDirection: "column",
+          //   }}
+          // >
+           <h4>{element}</h4> 
+          // </div>
         );
       })}
+      </div>
       </div>
 
       
