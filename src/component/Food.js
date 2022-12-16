@@ -1,7 +1,16 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useContext, useEffect, useState} from "react";
 import FoodItem from "./FoodItem";
 import { Pagination } from "@material-ui/lab";
 import axios from "axios";
+import { makeStyles } from "@material-ui/core/styles";
+import { Button } from "@material-ui/core";
+import Crousal from "./Crousal"
+import {
+  Container,
+  createTheme,
+  ThemeProvider,
+  TextField,
+} from "@material-ui/core";
 import { globalState } from "../Context";
 
 const CoinStyle = {
@@ -21,44 +30,113 @@ const CoinStyle = {
 
 export default function Food() {
   const [page, setPage] = useState(1); // pagination
-  const { text, setText } = useContext(globalState); //searching recipes
-  const [recipe, setRecipe] = useState([]);
-  const [alert, setAlert] = useState("");
+     let [query, setQuery] = useState("samosa");
+    let [alert, setAlert] = useState("");
+    const {recipe,setRecipe}=useContext(globalState);
 
-//   if (!text) setText("samosa");
+    const APP_ID = "4daa0b40";
+    const APP_KEY = "71da2f2c75bc3e6fb58a849c78afe20c";
 
-  const APP_ID = "4daa0b40";
-  const APP_KEY = "71da2f2c75bc3e6fb58a849c78afe20c";
+    const url = `https://api.edamam.com/search?q=${query}&app_id=${APP_ID}&app_key=${APP_KEY}`;
 
-  const url = `https://api.edamam.com/search?q=${text}&app_id=${APP_ID}&app_key=${APP_KEY}`;
+    let getData = async () => {
+      if (query !== "") {
+        let result = await axios.get(url);
+        let dt = await result.data;
+        console.log(dt);
+        if (!dt.more) {
+          return setAlert("No Food with such name");
+        }
+        // console.log(dt.hits); // different types
+        setRecipe(dt.hits);
+        setAlert("");
+        setQuery("");
 
-  let getData = async () => {
-    if (text !== "") {
-      let result = await axios.get(url);
-      let dt = await result.data;
-      console.log(dt);
-      if (!dt.more) {
-        return setAlert("No Food with such name");
+      } else {
+        setAlert("Please Fill Form");
       }
-      // console.log(dt.hits); // different types
-      setRecipe(dt.hits);
-      setAlert("");
-      setText("");
-    } else {
-      setAlert("Please Fill Form");
-    }
-    // console.log(dt.hits); // different types
-  };
-console.log(text)   
+    };
+    console.log(query)
+    // console.log(recipes);
+    useEffect(()=>{
+      getData()
+    },[])
 
-  useEffect(() => {
-    getData();
-  }, [text]);
-  
+    const onsubmit = (e) => {
+      e.preventDefault();
+      getData();
+    };
+
+    const onchange = (e) => {
+      e.preventDefault();
+      setQuery(e.target.value);
+
+    };
+
+  const useStyles = makeStyles({
+    row: {
+      backgroundColor: "#16171a",
+      cursor: "pointer",
+      "&:hover": {
+        backgroundColor: "#131111",
+      },
+      fontFamily: "Montserrat",
+    },
+    pagination: {
+      "& .MuiPaginationItem-root": {
+        color: "gold",
+      },
+    },
+  });
+
+  const classes = useStyles();
+
+  const darkTheme = createTheme({
+    palette: {
+      primary: {
+        main: "#fff",
+      },
+      type: "dark",
+    },
+  });
+  //   if (!text) setText("samosa");
+
+ 
+
   return (
     <>
+    <br/>
+        <Crousal/>
+      <ThemeProvider theme={darkTheme}>
+        <Container style={{ textAlign: "center" }}>
+          <br />
+          <br />
+          <TextField
+            label="Search For Food Recipe.."
+            variant="outlined"
+            style={{ marginBottom: 20, width: "90%" }}
+            onChange={onchange} 
+          />
+
+          <Button
+            onClick={onsubmit}
+            variant="outlined"
+            style={{
+              width: 85,
+              height: 54,
+              color:"white",
+              border:"0.2px solid grey"
+              
+            }}
+          >
+            Search
+          </Button>
+           
+          <br />
+        </Container>
+      </ThemeProvider>
       <div style={CoinStyle}>
-        {recipe.slice((page - 1) * 6, page * 6).map((ele, id) => {
+        {recipe.slice((page - 1) * 6, page * 6).map((ele, id) => {  //indidual recipe 
           return <FoodItem ele={ele} key={id} />;
         })}
       </div>
@@ -79,5 +157,3 @@ console.log(text)
     </>
   );
 }
-
-

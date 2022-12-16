@@ -1,5 +1,6 @@
 import React, { useContext, useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
+import { Button } from "@material-ui/core";
 
 import {
   Container,
@@ -11,8 +12,8 @@ import { globalState } from "../Context";
 
 export default function SearchBar() {
   const { text, setText } = useContext(globalState);
-  const [search,setSearch]=useState()
-  
+  const [search, setSearch] = useState();
+
   const useStyles = makeStyles({
     row: {
       backgroundColor: "#16171a",
@@ -39,12 +40,12 @@ export default function SearchBar() {
       type: "dark",
     },
   });
+
   const handlechange = (e) => {
     e.preventDefault();
     setSearch(e.target.value);
-    
   };
-  
+
   return (
     <ThemeProvider theme={darkTheme}>
       <Container style={{ textAlign: "center" }}>
@@ -56,7 +57,19 @@ export default function SearchBar() {
           style={{ marginBottom: 20, width: "100%" }}
           onChange={handlechange}
         />
-        <button onClick={()=>setText(text)}>Search</button>
+
+        <Button
+          variant="contained"
+          style={{
+            width: 85,
+            height: 39,
+            marginLeft: 15,
+            backgroundColor: "darkgreen",
+          }}
+        >
+          Search
+        </Button>
+        <br />
       </Container>
     </ThemeProvider>
   );
@@ -75,12 +88,12 @@ export default function SearchBar() {
 //     let [query, setQuery] = useState("");
 //     let { recipes, setRecipe } = useContext(globalstate);
 //     let [alert, setAlert] = useState("");
-  
+
 //     const APP_ID = "4daa0b40";
 //     const APP_KEY = "71da2f2c75bc3e6fb58a849c78afe20c";
-  
+
 //     const url = `https://api.edamam.com/search?q=${query}&app_id=${APP_ID}&app_key=${APP_KEY}`;
-            
+
 //     let getData = async () => {
 //       if (query !== "") {
 //         let result = await axios.get(url);
@@ -105,13 +118,13 @@ export default function SearchBar() {
 //       e.preventDefault();
 //       getData();
 //     };
-  
+
 //     const onchange = (e) => {
 //       e.preventDefault();
 //       setQuery(e.target.value);
 
 //     };
-  
+ 
 //   return (
 //     <div>
 //         <div className="App" style={{ backgroundImage: `url(${backgroundImage})` }}>
@@ -125,14 +138,14 @@ export default function SearchBar() {
 
 //             <div className="recipes">
 //               {recipes !== [] &&
-//                 recipes.map((recipe) => <Reciepe key={uuid4()} rcp={recipe} />)}  
+//                 recipes.map((recipe) => <Reciepe key={uuid4()} rcp={recipe} />)}
 //             </div>
 //             <h4>A Recipe Has No Soul, WE BRING SOUL TO THE RECIPE.</h4>
-           
+
 //         </div>
 //         <div>
 //             <h5>Instead of going out to dinner, buy good food. Cooking at home shows such affection. In a bad economy, it's more important to make yourself feel good.</h5>
-         
+
 //         </div>
 //     </div>
 //   )

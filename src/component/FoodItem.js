@@ -1,5 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
+import { globalState } from '../Context';
+import { useContext } from "react";
 
 const foodItemStyle = {
   padding : '1rem',
@@ -33,22 +35,32 @@ const foodimgstyle = {
 }
 
 export default function FoodItem({ele}) {
-    let label = ele?.recipe?.label;
-    // console.log(label)
+  // console.log(ele); 
+  // const {recipe,setRecipe}=useContext(globalState);
+
+
+  // let showdata = recipe.filter((element) => {
+  //   return element?.recipe?.label.toString() === label.id;
+  // });
+
+  // let data = [...showdata];
+  // console.log(data);
+
+    let Label = ele?.recipe?.label;
+    console.log(Label)
     let image = ele?.recipe?.image;
-    // let url = ele?.recipe?.url;
+    let url = ele?.recipe?.url;
     let ingredients = ele?.recipe?.ingredients;
-    // console.log(rcp)
-    // setArray(ingredients)  
-    // console.log(array , "usearray")
-  
+   
   return (
-    <Link to={`/coins/${ele.id}`}>
-      <div style={foodItemStyle}>
-        <img src={image} alt="food" style={foodimgstyle} />
-        <div style={foodlabelstyle}>{label}</div>
-      </div>
-    </Link>
+    <>
+     <Link to={`/IngredientDetails/${Label}`}>
+     <div style={foodItemStyle}>
+       <img src={image} alt="food_image" style={foodimgstyle} />
+       <div style={foodlabelstyle}>{Label}</div>
+     </div>
+   </Link>
+   </>
   )
 }
 
