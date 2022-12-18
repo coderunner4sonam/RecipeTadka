@@ -99,8 +99,6 @@ export default function Food() {
       type: "dark",
     },
   });
-  //   if (!text) setText("samosa");
-
  
 
   return (

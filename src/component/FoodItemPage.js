@@ -23,9 +23,8 @@ const FoodItemPage = () => {
         alignItems: "center",
       },
     },
-   
-   
   }));
+  
   useEffect(() => {
     setTimeout(() => {
       setFlag(false);

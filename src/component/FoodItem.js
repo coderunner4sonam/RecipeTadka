@@ -25,7 +25,20 @@ const h3Style = {
   color: 'black',
 }
 const foodlabelstyle ={
-    padding : '1rem',
+    // padding : '1rem',
+    // color:"black",
+    outline: "none",
+    // border:"1px soild grey"
+    // backgroundColor: "rgba(161, 161, 161, 0.9)",
+    // borderRadius: "0.5rem",
+    padding: "0.3rem 0.5rem",
+    top: "2.5rem",
+    left: "2.5rem",
+    right: "2.5rem",
+    fontWeight: "400",
+    textShadow: "0 0.5rem 0.5rem #555",
+    color: "black",
+    // margin-bottom: "revert",
 
 }
 const foodimgstyle = {
