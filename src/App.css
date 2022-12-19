@@ -31,13 +31,14 @@
 }
 
 .anchor{
-  width: 99px;
+  width: 384px;
   height: 40px;
   color: lightgreen;
   border: 0.2px solid grey;
   text-align: center;
   border-radius: 5px;
   text-decoration-color: #282c34;
+  background-color: inherit;
 }
 
 @keyframes App-logo-spin {

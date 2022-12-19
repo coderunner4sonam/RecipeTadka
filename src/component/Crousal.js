@@ -1,13 +1,10 @@
 import { makeStyles } from "@material-ui/core";
 import axios from "axios";
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import AliceCarousel from "react-alice-carousel";
-import { Link } from "react-router-dom";
-import { globalState } from "../Context";
 import "react-alice-carousel/lib/alice-carousel.css";
 
 const Crousal = () => {
-  // let [query, setQuery] = useContext(globalState);
   const [recipe, setRecipe] = useState([]);
 
   const APP_ID = "4daa0b40";

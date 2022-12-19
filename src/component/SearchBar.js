@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, {  useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { Button } from "@material-ui/core";
 
@@ -8,10 +8,9 @@ import {
   ThemeProvider,
   TextField,
 } from "@material-ui/core";
-import { globalState } from "../Context";
 
 export default function SearchBar() {
-  const { text, setText } = useContext(globalState);
+
   const [search, setSearch] = useState();
 
   const useStyles = makeStyles({

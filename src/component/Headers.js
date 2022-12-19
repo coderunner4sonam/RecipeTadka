@@ -1,9 +1,4 @@
 import { AppBar, Container, Toolbar, Typography } from "@material-ui/core";
-import InputBase from "@mui/material/InputBase";
-import IconButton from "@mui/material/IconButton";
-import { useContext } from "react";
-import { globalState } from "../Context";
-import AliceCarousel from "react-alice-carousel";
 import { Button } from "@material-ui/core";
 import { useNavigate } from "react-router-dom";
 
@@ -36,7 +31,7 @@ const darkTheme = createTheme({
 const Headers = () => {
   const navigate = useNavigate();
   const classes = useStyles();
-  const { text, setText } = useContext(globalState);
+
 
   return (
     <>

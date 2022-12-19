@@ -12,6 +12,7 @@ import {
   TextField,
 } from "@material-ui/core";
 import { globalState } from "../Context";
+import Alert from "./Alert";
 
 const CoinStyle = {
   maxWidth: "100%",
@@ -33,7 +34,7 @@ export default function Food() {
      let [query, setQuery] = useState("samosa");
     let [alert, setAlert] = useState("");
     const {recipe,setRecipe}=useContext(globalState);
-
+ 
     const APP_ID = "4daa0b40";
     const APP_KEY = "71da2f2c75bc3e6fb58a849c78afe20c";
 
@@ -53,7 +54,7 @@ export default function Food() {
         setQuery("");
 
       } else {
-        setAlert("Please Fill Form");
+        setAlert("Please Fill with food name");
       }
     };
     console.log(query)
@@ -109,6 +110,7 @@ export default function Food() {
         <Container style={{ textAlign: "center" }}>
           <br />
           <br />
+          {alert !== "" && <Alert alert={alert} />}
           <TextField
             label="Search For Food Recipe.."
             variant="outlined"
