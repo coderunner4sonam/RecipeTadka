@@ -48,17 +48,7 @@ const foodimgstyle = {
 }
 
 export default function FoodItem({ele}) {
-  // console.log(ele); 
-  // const {recipe,setRecipe}=useContext(globalState);
-
-
-  // let showdata = recipe.filter((element) => {
-  //   return element?.recipe?.label.toString() === label.id;
-  // });
-
-  // let data = [...showdata];
-  // console.log(data);
-
+ 
     let Label = ele?.recipe?.label;
     console.log(Label)
     let image = ele?.recipe?.image;
@@ -76,4 +66,5 @@ export default function FoodItem({ele}) {
    </>
   )
 }
+
 

@@ -10,7 +10,7 @@ const FoodItemPage = () => {
 
   let showdata = recipe.filter((element) => {
     return element?.recipe?.label.toString() === id;
-  });
+  }); 
 
   let data = [...showdata];
   console.log(data);
@@ -33,7 +33,7 @@ const FoodItemPage = () => {
   const classes = useStyles();
 
   if (flag) return <LinearProgress style={{ backgroundColor: "gold" }} />;
-
+  console.log(data[0].recipe.url)
   return (
     <>
       <div style={{display:"flex",justifyContent:"space-around"}}>
@@ -46,20 +46,24 @@ const FoodItemPage = () => {
             style={{ marginBottom: 20, height: "35%", width: "90%" ,padding:"10px",border:"1px solid white",marginRight:"80px"}}
           />
          <h4>{data[0].recipe.label}</h4>
+         <a href={data[0].recipe.url} target="_blank" rel="noopener noreferrer">
          <div className="anchor">
-          <a href={data[0].recipe.url} target="_blank" rel="noopener noreferrer">
+          
             Recipe 
+            </div>
           </a>
-        </div>
+       
         
          </div>
          <div>
         {data[0].recipe.ingredientLines.map((element) => {
         return (
-        
-           <h4>{element}</h4> 
+        <>
+        <h4>{element}</h4> 
+        </>
+           
           
-        );
+        )
       })}
       </div>
       </div>

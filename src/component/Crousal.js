@@ -59,18 +59,19 @@ const Crousal = () => {
             width="150"
             style={{ marginBottom: 10 }}
           />
-          <small>{food?.recipe?.label.split(" ", 3).join(" ")}</small>
+          
         </div>
+        <small>{food?.recipe?.label.split(" ", 3).join(" ")}</small>
       </div>
     );
   });
 
   const responsive = {
     0: {
-      items: 1,
+      items: 2,
     },
     300: {
-      items: 1,
+      items: 2,
     },
     512: {
       items: 8,
