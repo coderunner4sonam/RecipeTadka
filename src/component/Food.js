@@ -101,7 +101,6 @@ export default function Food() {
     },
   });
  
-
   return (
     <>
     <br/>

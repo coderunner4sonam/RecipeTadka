@@ -25,12 +25,7 @@ const h3Style = {
   color: 'black',
 }
 const foodlabelstyle ={
-    // padding : '1rem',
-    // color:"black",
     outline: "none",
-    // border:"1px soild grey"
-    // backgroundColor: "rgba(161, 161, 161, 0.9)",
-    // borderRadius: "0.5rem",
     padding: "0.3rem 0.5rem",
     top: "2.5rem",
     left: "2.5rem",
@@ -38,7 +33,6 @@ const foodlabelstyle ={
     fontWeight: "400",
     textShadow: "0 0.5rem 0.5rem #555",
     color: "black",
-    // margin-bottom: "revert",
 
 }
 const foodimgstyle = {
@@ -52,8 +46,8 @@ export default function FoodItem({ele}) {
     let Label = ele?.recipe?.label;
     console.log(Label)
     let image = ele?.recipe?.image;
-    let url = ele?.recipe?.url;
-    let ingredients = ele?.recipe?.ingredients;
+    // let url = ele?.recipe?.url;
+    // let ingredients = ele?.recipe?.ingredients;
    
   return (
     <>

@@ -68,10 +68,10 @@ const Crousal = () => {
 
   const responsive = {
     0: {
-      items: 2,
+      items: 3,
     },
     300: {
-      items: 2,
+      items: 3,
     },
     512: {
       items: 8,
