@@ -34,7 +34,8 @@ export default function Food() {
      let [query, setQuery] = useState("samosa");
     let [alert, setAlert] = useState("");
     const {recipe,setRecipe}=useContext(globalState);
- 
+   
+
     const APP_ID = "4daa0b40";
     const APP_KEY = "71da2f2c75bc3e6fb58a849c78afe20c";
 
@@ -52,7 +53,7 @@ export default function Food() {
         setRecipe(dt.hits);
         setAlert("");
         setQuery("");
-
+       
       } else {
         setAlert("Please Fill with food name");
       }
@@ -135,7 +136,7 @@ export default function Food() {
         </Container>
       </ThemeProvider>
       <div style={CoinStyle}>
-        {recipe.slice((page - 1) * 6, page * 6).map((ele, id) => {  //indidual recipe 
+        {recipe.slice((page - 1) * 6, page * 6).map((ele, id) => {  //array slice [0,1,2,3,4,5].map
           return <FoodItem ele={ele} key={id} />;
         })}
       </div>

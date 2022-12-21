@@ -7,7 +7,7 @@ function Context({children}) {
     const [count,setCount]=useState(0);
     const [recipe, setRecipe]=useState([]);
     const [text,setText]=useState("");
-
+    
   return (
    <globalState.Provider value={{query,setQuery,count,setCount,recipe, setRecipe,text,setText}}>
         {children}
